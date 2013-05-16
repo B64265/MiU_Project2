@@ -241,7 +241,7 @@ window.addEventListener("DOMContentLoaded", function(){
 		var editSubmit = $('submit');
 		
 		//Save the key created
-		editSubmit.addEventListener("click", validate);
+		editSubmit.addEventListener("click", validate());
 		editSubmit.key = this.key;
 		
 	}
@@ -342,7 +342,7 @@ window.addEventListener("DOMContentLoaded", function(){
 	clearDataLink.addEventListener("click", clearStoredData);
 	var saveLocalData = $('submit');
 	saveLocalData.addEventListener("click", validate);
-	//saveLocalData.addEventListener("Click", saveData)
+	//saveLocalData.addEventListener("Click", saveData);
 	
 	//var save = $('submit');
 	//save.addEventListener("click", saveData);
