@@ -88,20 +88,106 @@ window.addEventListener("DOMContentLoaded", function(){
 			
 		}
 		
+		// determine if I should add list to search or browse pages
+		if ((this.id === "Personal") || (this.id === "Work") || (this.id === "Other")) {
+			var appendLocation = $('browseReminderList');
+			$('browseReminderList').innerHTML = "";
+			console.log("Running like it should....");
+			filterCats = this.id;
+			browseCheck = true;
+		} else {
+			var appendLocation = $('reminderList');
+			$('reminderList').innerHTML = "";
+			console.log("Running like it should.... From SEARCH");
+			browseCheck = false;
+		}
 		
-
-		var appendLocation = $('reminderList');
-				appendLocation.innerHTML = "";
-
-
+		// check for browsing and filter
+						
 		// collapsing items
 		for (var i = 0, j = localStorage.length; i < j; i++) {
 			var key = localStorage.key(i);
 			var value = localStorage.getItem(key);
 			var obj = JSON.parse(value);
 			
+			if (browseCheck) {
+			console.log(obj.group[1]);
+				if (obj.group[1] === filterCats) {
+					readyCheck = true;
+				} else {
+					readyCheck = false;
+				}
+			} else {
+				readyCheck = true;
+			}
+			
+			if (readyCheck) {
+				if(browseCheck){
 				
-			var makeEntry = document.createElement('div');
+				var newImg = document.createElement('img');
+				var setSrc = newImg.setAttribute("src", "img/"+ filterCats +".png");
+				newImg.setAttribute("height", "128");
+				newImg.setAttribute("width", "128");
+				
+
+				var makeEntry = document.createElement('ul');
+				makeEntry.setAttribute("data-role", "listview");
+				appendLocation.appendChild(makeEntry);
+				var makeNewLi = document.createElement('li');
+				makeEntry.appendChild(makeNewLi);
+				makeNewLi.appendChild(newImg);
+				var makeH3 = document.createElement('h3');
+				makeH3.innerHTML = obj.remindTitle[1] + " - Due Date: " + obj.dueDate[1];
+				makeNewLi.appendChild(makeH3);
+				var makeP = document.createElement('p');
+				makeP.innerHTML = obj.description[1];
+				makeNewLi.appendChild(makeP);
+				makeEntry.setAttribute("id", key);	
+					
+				
+							
+				/*
+// Create List of Reminder Details
+				var makeList = document.createElement('ul');
+				makeEntry.appendChild(makeList);
+				for (var k in obj) {
+					var makeLi = document.createElement('li');
+					makeList.appendChild(makeLi);
+					var optSubText = obj[k][0]+ " " + obj[k][1];
+					makeLi.innerHTML = optSubText;
+					
+				}
+*/
+			/*
+	//Buttons set up for remove and edit
+				var buttonHolder = document.createElement('div');
+				buttonHolder.setAttribute("class", "ui-grid-a");
+				var editButtonDiv = document.createElement('div');
+				editButtonDiv.setAttribute("class", "ui-block-a");
+				var editButton = document.createElement('a');
+				editButton.setAttribute("data-role", "button");
+				editButton.setAttribute("href", "#reminder");
+				editButton.innerHTML = "Edit";
+				editButton.key = key;
+				var removeButtonDiv = document.createElement('div');
+				removeButtonDiv.setAttribute("class", "ui-block-b");
+				var removeButton = document.createElement('a');
+				removeButton.setAttribute("data-role", "button");
+				removeButton.setAttribute("href", "#");
+				removeButton.innerHTML = "Delete";
+				removeButton.key = key;
+				makeEntry.appendChild(buttonHolder);
+				buttonHolder.appendChild(editButtonDiv);
+				buttonHolder.appendChild(removeButtonDiv);
+				editButtonDiv.appendChild(editButton);
+				removeButtonDiv.appendChild(removeButton);
+				editButton.addEventListener("click", editItem);
+				removeButton.addEventListener("click", deleteItem);
+*/
+					
+				}else{
+
+				var makeEntry = document.createElement('div');
 				makeEntry.setAttribute("data-role", "collapsible");
 				makeEntry.setAttribute("data-mini", "true");
 				appendLocation.appendChild(makeEntry);
@@ -109,7 +195,10 @@ window.addEventListener("DOMContentLoaded", function(){
 				makeH3.innerHTML = obj.remindTitle[1] + " - " + obj.dueDate[1];
 				makeEntry.appendChild(makeH3);
 				makeEntry.setAttribute("id", key);	
+					
+					
 				
+							
 				// Create List of Reminder Details
 				var makeList = document.createElement('ul');
 				makeEntry.appendChild(makeList);
@@ -118,8 +207,8 @@ window.addEventListener("DOMContentLoaded", function(){
 					makeList.appendChild(makeLi);
 					var optSubText = obj[k][0]+ " " + obj[k][1];
 					makeLi.innerHTML = optSubText;
-				
-}
+					
+				}
 				//Buttons set up for remove and edit
 				var buttonHolder = document.createElement('div');
 				buttonHolder.setAttribute("class", "ui-grid-a");
@@ -144,13 +233,14 @@ window.addEventListener("DOMContentLoaded", function(){
 				removeButtonDiv.appendChild(removeButton);
 				editButton.addEventListener("click", editItem);
 				removeButton.addEventListener("click", deleteItem);
-
+			}
 
 		}
 		
 	}
+}
 	
-	/*
+	
 		//Get correct image for group
 		function getLSImage(groupName, createSubList){
 		
@@ -162,7 +252,7 @@ window.addEventListener("DOMContentLoaded", function(){
 		newImg.setAttribute("width", "128");
 		imgLi.appendChild(newImg);
 	}
-*/
+
 	
 	function prefillData(){
 		
@@ -325,8 +415,19 @@ window.addEventListener("DOMContentLoaded", function(){
 	// Click events and links
 	var showDataLink = $('showData');
 	showDataLink.addEventListener("click", getSomeData);
+	
+	var personalBrowse = $('Personal');
+	personalBrowse.addEventListener("click", getSomeData);
+	
+	var workBrowse = $('Work');
+	workBrowse.addEventListener("click", getSomeData);
+
+	var otherBrowse = $('Other');
+	otherBrowse.addEventListener("click", getSomeData);
+
 	var clearDataLink = $('clearData');
 	clearDataLink.addEventListener("click", clearStoredData);
+	
 	var saveLocalData = $('submitButton');
 	saveLocalData.addEventListener("click", validate);
 

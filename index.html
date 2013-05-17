@@ -29,34 +29,35 @@
 			<h1>RemindMe</h1>
 		</div>
 		
-		<div data-role="content" data-theme="b">
-			
-			<p><a href="#reminder" data-role="button" data-icon="arrow-r" data-iconpos="right">Add A Reminder</a></p>
-		</div>
+		<div data-role="content" style="text-align: center;" data-theme="b">
+			<a href="#reminder"><img src="img/reminder.png" height=120 width=120/></a><br />
+			<p><a href="#reminder" style="margin: 5%" data-inset="true" data-role="button" data-icon="arrow-r" data-iconpos="right">Add A Reminder</a></p>
 		
 		<div id="browseButtons">
-			<h3 style=" position: relative; left: 22.5%;">Browse Reminders</h3>
+			<h3>Browse Reminders</h3>
 			<ul data-role="controlgroup" style="margin: 5%" data-inset="true">
-				<a href="index.html" data-role="button">Personal</a>
-				<a href="index.html" data-role="button">Work</a>
-				<a href="index.html" data-role="button">Other</a>
+				<a href="#browse" data-role="button" id="Personal" data-icon="arrow-r" data-iconpos="right">Personal</a>
+				<a href="#browse" data-role="button" id="Work" data-icon="arrow-r" data-iconpos="right">Work</a>
+				<a href="#browse" data-role="button" id="Other" data-icon="arrow-r" data-iconpos="right">Other</a>
 			</ul>
 		</div>
+	</div>
 		
 		<div data-role="footer" data-position="fixed" data-theme="b" id="footer">
 				<div data-role="navbar">
 					<ul>
 						<li><a href="#reminder">+Reminder</a></li>
 						<li><a href="#search" id="searchLink" data-ajax="true">Search</a></li>
-						<li><a href="#moreInfo">Info</a>
+						<li><a href="#info">Info</a>
 						</li>
 					</ul>
 				</div>
 			</div>
 	</div>
 	
-	<div data-role="page" data-position="fixed" id="reminder" data-add-back-btn="true" data-theme="b">
+	<div data-role="page" data-add-back-btn="true" data-position="fixed" id="reminder" data-theme="b">
 		<div data-role="header" data-position="fixed" data-theme="b">
+		<a href="#home" data-icon="home" class="ui-btn-right" data-ajax="true">Home</a>
 			<h1>RemindMe</h1>
 		</div>
 		
@@ -126,7 +127,7 @@
 					<ul>
 						<li><a href="#reminder" class="ui-btn-active">+Reminder</a></li>
 						<li><a href="#search" id="searchLink" data-ajax="true">Search</a></li>
-						<li><a href="#moreInfo">Info</a>
+						<li><a href="#info">Info</a>
 						</li>
 					</ul>
 				</div>
@@ -163,22 +164,20 @@
 				<a href="#index" data-icon="home" class="ui-btn-right" data-ajax="true">Home</a>
 			</div>
 			<div data-role="content">
-			
-			</div>
-			<div class="content" id="browseReminderList">
-				<!-- JavaScript inserts data here -->
+				<ul data-role="listview" data-inset="true" id="browseReminderList">
+					<!-- JavaScript will insert data here -->
+				</ul>
 			</div>
 			<div data-role="footer" data-position="fixed" data-theme="b" id="footer">
 				<div data-role="navbar">
 					<ul>
 						<li><a href="#reminder">+Reminder</a></li>
-						<li><a href="#search" id="searchLink" data-ajax="true">Search</a></li>
+						<li><a href="#search" data-ajax="true">Search</a></li>
 						<li><a href="#moreInfo">Info</a>
 						</li>
 					</ul>
 				</div>
 			</div>
-		</div>
 	
 
 	<!-- JavaScript under here -->
