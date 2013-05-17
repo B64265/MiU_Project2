@@ -137,7 +137,7 @@ window.addEventListener("DOMContentLoaded", function(){
 				makeEntry.appendChild(makeNewLi);
 				makeNewLi.appendChild(newImg);
 				var makeH3 = document.createElement('h3');
-				makeH3.innerHTML = obj.remindTitle[1] + " - Due Date: " + obj.dueDate[1];
+				makeH3.innerHTML = obj.remindTitle[1];
 				makeNewLi.appendChild(makeH3);
 				var makeP = document.createElement('p');
 				makeP.innerHTML = obj.description[1];
@@ -192,7 +192,7 @@ window.addEventListener("DOMContentLoaded", function(){
 				makeEntry.setAttribute("data-mini", "true");
 				appendLocation.appendChild(makeEntry);
 				var makeH3 = document.createElement('h3');
-				makeH3.innerHTML = obj.remindTitle[1] + " - " + obj.dueDate[1];
+				makeH3.innerHTML = obj.remindTitle[1] + " - Due: " + obj.dueDate[1];
 				makeEntry.appendChild(makeH3);
 				makeEntry.setAttribute("id", key);	
 					
@@ -415,6 +415,9 @@ window.addEventListener("DOMContentLoaded", function(){
 	// Click events and links
 	var showDataLink = $('showData');
 	showDataLink.addEventListener("click", getSomeData);
+	
+	var searchButton = $('searchLink');
+	searchButton.addEventListener("click", getSomeData);
 	
 	var personalBrowse = $('Personal');
 	personalBrowse.addEventListener("click", getSomeData);
