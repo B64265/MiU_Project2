@@ -4,6 +4,8 @@
 //04-09-2013
 
 
+
+
 //Make sure DOM in loaded and ready to go!
 window.addEventListener("DOMContentLoaded", function(){
 
@@ -50,38 +52,13 @@ window.addEventListener("DOMContentLoaded", function(){
 	}
 	
 	
-
-	function toggleControl(a){
-		
-		switch(a){
-			case "on":
-				$('reminderForm').style.display = "none";
-				$('clearData').style.display = "inline";
-				$('showData').style.display = "none";
-				$('addNewForm').style.display = "inline";
-				break;
-			case "off":
-				$('reminderForm').style.display = "block";
-				$('clearData').style.display = "inline";
-				$('showData').style.display = "inline";
-				$('addNewForm').style.display = "none";
-				$('items').style.display = "none";
-				break;
-			default:
-				return false;
-	
-			}
-	}
-	
-	function saveData(key){
-		if(!key){
-		
-			var id = Math.floor(Math.random()*100000001);
-		}else{
-			
-			id = key;
-		}
-		
+	// Gather data from form field, store in object, then store in local storage
+	function storeData (key) {
+		if (!key) {
+			var id = Math.floor(Math.random()*1000000);
+		} else {
+			var id = key;
+		}		
 		getSelectedRadio();
 		
 		//Form data into an object..
@@ -103,8 +80,7 @@ window.addEventListener("DOMContentLoaded", function(){
 	
 	
 	function getSomeData(){
-		toggleControl("on");
-		
+				
 		if(localStorage.length === 0){
 			
 			alert("There is no data in local storage, so default data was added.");
@@ -112,42 +88,71 @@ window.addEventListener("DOMContentLoaded", function(){
 			
 		}
 		
-		var createDiv = document.createElement('div');
-		createDiv.setAttribute("id", "items");
-		var createList = document.createElement('ul');
-		createDiv.appendChild(createList);
-		document.body.appendChild(createDiv);
-		$('items').style.display = "block";
+		
 
-		for(var i=0, j=localStorage.length; i<j; i++){
-			
-			var createLi = document.createElement('li');
-			var linksLi = document.createElement('li');
-			createList.appendChild(createLi);
+		var appendLocation = $('reminderList');
+				appendLocation.innerHTML = "";
+
+
+		// collapsing items
+		for (var i = 0, j = localStorage.length; i < j; i++) {
 			var key = localStorage.key(i);
 			var value = localStorage.getItem(key);
-			var reObj = JSON.parse(value);
-			var createSubList = document.createElement('ul');
-			createLi.appendChild(createSubList);
+			var obj = JSON.parse(value);
 			
-			getLSImage(reObj.group[1], createSubList);
-			
-			for( var n in reObj){
 				
-				var createSubLi = document.createElement("li");
-				createSubList.appendChild(createSubLi);
-				var optSubText = reObj[n][0]+" "+reObj[n][1];
-				createSubLi.innerHTML = optSubText;
-				createSubList.appendChild(linksLi);
-			}
-			
-			createItemLinks(localStorage.key(i), linksLi);
+			var makeEntry = document.createElement('div');
+				makeEntry.setAttribute("data-role", "collapsible");
+				makeEntry.setAttribute("data-mini", "true");
+				appendLocation.appendChild(makeEntry);
+				var makeH3 = document.createElement('h3');
+				makeH3.innerHTML = obj.remindTitle[1] + " - " + obj.dueDate[1];
+				makeEntry.appendChild(makeH3);
+				makeEntry.setAttribute("id", key);	
+				
+				// Create List of Reminder Details
+				var makeList = document.createElement('ul');
+				makeEntry.appendChild(makeList);
+				for (var k in obj) {
+					var makeLi = document.createElement('li');
+					makeList.appendChild(makeLi);
+					var optSubText = obj[k][0]+ " " + obj[k][1];
+					makeLi.innerHTML = optSubText;
+				
+}
+				//Buttons set up for remove and edit
+				var buttonHolder = document.createElement('div');
+				buttonHolder.setAttribute("class", "ui-grid-a");
+				var editButtonDiv = document.createElement('div');
+				editButtonDiv.setAttribute("class", "ui-block-a");
+				var editButton = document.createElement('a');
+				editButton.setAttribute("data-role", "button");
+				editButton.setAttribute("href", "#reminder");
+				editButton.innerHTML = "Edit";
+				editButton.key = key;
+				var removeButtonDiv = document.createElement('div');
+				removeButtonDiv.setAttribute("class", "ui-block-b");
+				var removeButton = document.createElement('a');
+				removeButton.setAttribute("data-role", "button");
+				removeButton.setAttribute("href", "#");
+				removeButton.innerHTML = "Delete";
+				removeButton.key = key;
+				makeEntry.appendChild(buttonHolder);
+				buttonHolder.appendChild(editButtonDiv);
+				buttonHolder.appendChild(removeButtonDiv);
+				editButtonDiv.appendChild(editButton);
+				removeButtonDiv.appendChild(removeButton);
+				editButton.addEventListener("click", editItem);
+				removeButton.addEventListener("click", deleteItem);
+
+
 		}
 		
 	}
 	
-	//Get correct image for group
-	function getLSImage(groupName, createSubList){
+	/*
+		//Get correct image for group
+		function getLSImage(groupName, createSubList){
 		
 		var imgLi = document.createElement('li');
 		createSubList.appendChild(imgLi);
@@ -157,43 +162,17 @@ window.addEventListener("DOMContentLoaded", function(){
 		newImg.setAttribute("width", "128");
 		imgLi.appendChild(newImg);
 	}
+*/
 	
 	function prefillData(){
 		
 		for(var n in json){
 			
-			var id = Math.floor(Math.random()*100000001);
+			var id = Math.floor(Math.random()*10000000);
 			localStorage.setItem(id, JSON.stringify(json[n]));
 			
 		}
 		
-		
-	}
-	
-	//Create Item Links - Creates Edit and Delete links for stored items when displayed
-	function createItemLinks(key, linksLi){
-		
-		//edit link
-		var editLink = document.createElement('a');
-		editLink.href = "#";
-		editLink.key = key;
-		var editText = "Edit Reminder";
-		editLink.addEventListener("click", editItem);
-		editLink.innerHTML = editText;
-		linksLi.appendChild(editLink);
-		
-		//Line Break
-		var lineBreak = document.createElement('br');
-		linksLi.appendChild(lineBreak);
-		
-		//delete link
-		var deleteLink = document.createElement('a');
-		deleteLink.href = "#";
-		deleteLink.key = key;
-		var deleteText = "Delete Reminder";
-		deleteLink.addEventListener("click", deleteItem);
-		deleteLink.innerHTML = deleteText;
-		linksLi.appendChild(deleteLink);
 		
 	}
 	
@@ -216,12 +195,17 @@ window.addEventListener("DOMContentLoaded", function(){
 	
 	function editItem(){
 		
+		
+		
 		// Get data from Local Storage
 		var value = localStorage.getItem(this.key);
 		var reminder = JSON.parse(value);
+	
+		var keyValue = this.key;
 		
 		
-		toggleControl("off");
+		//toggleControl("off");
+	
 		$('remindTitle').value = reminder.remindTitle[1];
 		$('groups').value = reminder.group[1];
 		$('due').value = reminder.dueDate[1];
@@ -233,16 +217,19 @@ window.addEventListener("DOMContentLoaded", function(){
 			$('priority').setAttribute("checked", "checked");
 		}
 		
+
 		//remove listener from input save button
-		save.removeEventListener("click", saveData);
+		save.removeEventListener("click", storeData);
 		
 		//Change Submit button value to edit button
-		$('submit').value = "Edit Reminder";
-		var editSubmit = $('submit');
+		$('#submitButton').parent().find('.ui-btn-text').text('zzzzz');
+		//$('#submitButton').val = "Edit Reminder";
+		var editSubmit = $('#submitButton');
 		
 		//Save the key created
-		editSubmit.addEventListener("click", validate());
+		editSubmit.addEventListener("click", validate);
 		editSubmit.key = this.key;
+		
 		
 	}
 	
@@ -251,7 +238,7 @@ window.addEventListener("DOMContentLoaded", function(){
 		var getDueDate = $('due');
 		var getRecurrence = $('recurrence');
 		var getTitle = $('remindTitle');
-		
+				
 		//reset error
 		errorMsg.innerHTML = "";
 		getTitle.style.border = "1px solid black";
@@ -301,8 +288,8 @@ window.addEventListener("DOMContentLoaded", function(){
 			
 			
 		}else{
-			saveData(this.key);
-			
+			storeData(this.key);
+						
 		}
 		
 		eventData.preventDefault();
@@ -340,12 +327,8 @@ window.addEventListener("DOMContentLoaded", function(){
 	showDataLink.addEventListener("click", getSomeData);
 	var clearDataLink = $('clearData');
 	clearDataLink.addEventListener("click", clearStoredData);
-	var saveLocalData = $('submit');
+	var saveLocalData = $('submitButton');
 	saveLocalData.addEventListener("click", validate);
-	//saveLocalData.addEventListener("Click", saveData);
-	
-	//var save = $('submit');
-	//save.addEventListener("click", saveData);
 
 	
 });
