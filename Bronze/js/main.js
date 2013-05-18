@@ -186,53 +186,48 @@ window.addEventListener("DOMContentLoaded", function(){
 */
 					
 				}else{
-
-				var makeEntry = document.createElement('div');
-				makeEntry.setAttribute("data-role", "collapsible");
-				makeEntry.setAttribute("data-mini", "true");
-				appendLocation.appendChild(makeEntry);
-				var makeH3 = document.createElement('h3');
-				makeH3.innerHTML = obj.remindTitle[1] + " - Due: " + obj.dueDate[1];
-				makeEntry.appendChild(makeH3);
-				makeEntry.setAttribute("id", key);	
-					
-					
 				
-							
-				// Create List of Reminder Details
-				var makeList = document.createElement('ul');
-				makeEntry.appendChild(makeList);
-				for (var k in obj) {
-					var makeLi = document.createElement('li');
-					makeList.appendChild(makeLi);
-					var optSubText = obj[k][0]+ " " + obj[k][1];
-					makeLi.innerHTML = optSubText;
-					
-				}
+			/*
+	var newImg = document.createElement('img');
+				var setSrc = newImg.setAttribute("src", "img/"+ filterCats +".png");
+				newImg.setAttribute("height", "128");
+				newImg.setAttribute("width", "128");
+*/
+				
+
+				var makeEntry = document.createElement('ul');
+				makeEntry.setAttribute("data-role", "listview");
+				appendLocation.appendChild(makeEntry);
+				var makeNewLi = document.createElement('li');
+				makeEntry.appendChild(makeNewLi);
+				//makeNewLi.appendChild(newImg);
+					var editButton = document.createElement('a');
+				editButton.setAttribute("href", "#reminder");
+				editButton.key = key;
+				var makeH3 = document.createElement('h6');
+				makeH3.innerHTML = obj.remindTitle[1];
+				editButton.appendChild(makeH3);
+				var makeP = document.createElement('p');
+				makeP.innerHTML = obj.description[1];
+				editButton.appendChild(makeP);
+				makeNewLi.appendChild(editButton);
+				makeEntry.setAttribute("id", key);
+			
+/*
+
+
 				//Buttons set up for remove and edit
-				var buttonHolder = document.createElement('div');
-				buttonHolder.setAttribute("class", "ui-grid-a");
-				var editButtonDiv = document.createElement('div');
-				editButtonDiv.setAttribute("class", "ui-block-a");
 				var editButton = document.createElement('a');
 				editButton.setAttribute("data-role", "button");
 				editButton.setAttribute("href", "#reminder");
-				editButton.innerHTML = "Edit";
+				editButton.setAttribute("data-icon", "gear");
 				editButton.key = key;
-				var removeButtonDiv = document.createElement('div');
-				removeButtonDiv.setAttribute("class", "ui-block-b");
-				var removeButton = document.createElement('a');
-				removeButton.setAttribute("data-role", "button");
-				removeButton.setAttribute("href", "#");
-				removeButton.innerHTML = "Delete";
-				removeButton.key = key;
-				makeEntry.appendChild(buttonHolder);
-				buttonHolder.appendChild(editButtonDiv);
-				buttonHolder.appendChild(removeButtonDiv);
-				editButtonDiv.appendChild(editButton);
-				removeButtonDiv.appendChild(removeButton);
+				
+				
+				makeEntry.appendChild(editButton);
+*/
+				
 				editButton.addEventListener("click", editItem);
-				removeButton.addEventListener("click", deleteItem);
 			}
 
 		}

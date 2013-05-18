@@ -36,9 +36,19 @@
 		<div id="browseButtons">
 			<h3>Browse Reminders</h3>
 			<ul data-role="controlgroup" style="margin: 5%" data-inset="true">
-				<a href="#browse" data-role="button" id="Personal" data-ajax="false" data-icon="arrow-r" data-iconpos="right">Personal</a>
-				<a href="#browse" data-role="button" id="Work" data-ajax="false" data-icon="arrow-r" data-iconpos="right">Work</a>
-				<a href="#browse" data-role="button" id="Other" data-ajax="false" data-icon="arrow-r" data-iconpos="right">Other</a>
+			
+			<div class="ui-grid-b" id="catThumbnailGrid">
+					<div class="ui-block-b" id="Personal">
+						<a href="#browse" id="Personal" data-ajax="false" data-icon="arrow-r" data-iconpos="right"><img src="img/Personal.png" /></a><br />
+					</div>
+					<div class="ui-block-c" id="Work">
+						<a href="#browse" id="Work" data-ajax="false" data-icon="arrow-r" data-iconpos="right"><img src="img/Work.png" /></a><br />
+					</div>
+					<div class="ui-block-d" id="Other">
+						<a href="#browse" id="Other" data-ajax="false" data-icon="arrow-r" data-iconpos="right"><img src="img/Other.png" /></a><br />
+					</div>
+				</div>
+
 			</ul>
 		</div>
 	</div>
@@ -139,13 +149,11 @@
 				<h1>RemindMe</h1>
 				<a href="#home" data-icon="home" class="ui-btn-right" data-ajax="true">Home</a>
 			</div>
-			<div data-role="content">
-				<div data-role="collapsible-set">
-					<ul data-role="listview" data-inset="true" data-filter="true" id="reminderList">
+				<div data-role="content">
+					<ul data-role="listview" data-inset="true" id="reminderList">
 						<!-- JavaScript will insert data here -->
 					</ul>
 				</div>
-			</div>
 			<div data-role="footer" data-position="fixed" data-theme="b" id="footer">
 				<div data-role="navbar">
 					<ul>
