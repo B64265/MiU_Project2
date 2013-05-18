@@ -37,7 +37,7 @@
 			<h3>Browse Reminders</h3>
 			<ul data-role="controlgroup" style="margin: 5%" data-inset="true">
 			
-			<div class="ui-grid-b" id="catThumbnailGrid">
+			<div class="ui-grid-b" id="thumbGrid">
 					<div class="ui-block-b" id="Personal">
 						<a href="#browse" id="Personal" data-ajax="false" data-icon="arrow-r" data-iconpos="right"><img src="img/Personal.png" /></a><br />
 					</div>
@@ -58,7 +58,7 @@
 					<ul>
 						<li><a href="#reminder">+Reminder</a></li>
 						<li><a href="#search" id="searchLink" data-ajax="false">Search</a></li>
-						<li><a href="#info">Info</a>
+						<li><a href="#moreInfo">Info</a>
 						</li>
 					</ul>
 				</div>
@@ -137,7 +137,7 @@
 					<ul>
 						<li><a href="#reminder" class="ui-btn-active">+Reminder</a></li>
 						<li><a href="#search" id="searchLink" data-ajax="true">Search</a></li>
-						<li><a href="#info">Info</a>
+						<li><a href="#moreInfo">Info</a>
 						</li>
 					</ul>
 				</div>
@@ -149,7 +149,7 @@
 				<h1>RemindMe</h1>
 				<a href="#home" data-icon="home" class="ui-btn-right" data-ajax="true">Home</a>
 			</div>
-				<div data-role="content">
+				<div data-role="listview" data-filter="true">
 					<ul data-role="listview" data-inset="true" id="reminderList">
 						<!-- JavaScript will insert data here -->
 					</ul>
@@ -181,11 +181,34 @@
 					<ul>
 						<li><a href="#reminder">+Reminder</a></li>
 						<li><a href="#search" data-ajax="true">Search</a></li>
+						<li><a href="#moreInfo">Info</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div data-role="page" id="moreInfo" data-theme="b" data-add-back-btn="true">
+			<div data-role="header" data-position="fixed" data-theme="b" data-id="header">
+				<h1>RemindMe</h1>
+				<a href="#home" id="sendHome" data-icon="home" class="ui-btn-right" data-ajax="true">Home</a>
+			</div>
+			<div data-role="content">
+				<ul data-role="controlgroup" style="margin: 5%" data-inset="true">
+					<a href="../Gold/index.html" rel="external" data-role="button" id="Gold" data-icon="arrow-r" data-iconpos="right">Gold App</a>
+					<a href="../Bronze/index.html" rel="external" data-role="button" id="Bronze" data-icon="arrow-r" data-iconpos="right">Bronze App</a>
+					<a href="http://github.com/B64265/MiU_Project2" data-role="button" id="GitHub" data-icon="arrow-r" data-iconpos="right">GitHub</a>
+				</ul>
+			</div>
+			<div data-role="footer" data-position="fixed" data-theme="b" id="footer">
+				<div data-role="navbar">
+					<ul>
+						<li><a href="#reminder">+Reminder</a></li>
+						<li><a href="#search" data-ajax="true">Search</a></li>
 						<li><a href="#moreInfo">Info</a>
 						</li>
 					</ul>
 				</div>
 			</div>
+		</div>
 	
 
 	<!-- JavaScript under here -->

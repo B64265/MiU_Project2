@@ -7,7 +7,7 @@ var json = {
 	"reminder1": {
 		"group": ["Group:", "Personal"],
 		"remindTitle" : ["Reminder Title:", "Lunch"],
-		"dueDate"	: ["Due Date:", "2013-05-29"],
+		"dueDate"	: ["Due Date:", "2013-04-29"],
 		"recurrence" : ["Recurrence:", "10"],
 		"description" : ["Description:", "Test Data 1"]
 		
@@ -15,7 +15,7 @@ var json = {
 	"reminder2": {
 		"group": ["Group:", "Work"],
 		"remindTitle" : ["Reminder Title:", "Sales Report"],
-		"dueDate"	: ["Due Date:", "2013-06-01"],
+		"dueDate"	: ["Due Date:", "2013-05-01"],
 		"recurrence" : ["Recurrence:", "8"],
 		"description" : ["Description:", "Test Data 2"]
 		
@@ -23,7 +23,7 @@ var json = {
 	"reminder3": {
 		"group": ["Group:", "Other"],
 		"remindTitle" : ["Reminder Title:", "Walk the dog"],
-		"dueDate"	: ["Due Date:", "2013-05-18"],
+		"dueDate"	: ["Due Date:", "2013-05-7"],
 		"recurrence" : ["Recurrence:", "7"],
 		"description" : ["Description:", "Test Data 3"]
 		
@@ -31,7 +31,7 @@ var json = {
 	"reminder4": {
 		"group": ["Group:", "Work"],
 		"remindTitle" : ["Reminder Title:", "Productivity Report"],
-		"dueDate"	: ["Due Date:", "2013-05-28"],
+		"dueDate"	: ["Due Date:", "2013-05-12"],
 		"recurrence" : ["Recurrence:", "8"],
 		"description" : ["Description:", "Test Data 3"]
 		
@@ -39,7 +39,7 @@ var json = {
 	"reminder5": {
 		"group": ["Group:", "Other"],
 		"remindTitle" : ["Reminder Title:", "Vet appointment"],
-		"dueDate"	: ["Due Date:", "2013-03-28"],
+		"dueDate"	: ["Due Date:", "2013-03-16"],
 		"recurrence" : ["Recurrence:", "3"],
 		"description" : ["Description:", "Xander Shots"]
 		
@@ -63,7 +63,7 @@ var json = {
 	"reminder8": {
 		"group": ["Group:", "Work"],
 		"remindTitle" : ["Reminder Title:", "Write-Off Barometer"],
-		"dueDate"	: ["Due Date:", "2013-05-19"],
+		"dueDate"	: ["Due Date:", "2013-06-01"],
 		"recurrence" : ["Recurrence:", "4"],
 		"description" : ["Description:", "Pull YTD and YoY"]
 		
