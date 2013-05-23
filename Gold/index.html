@@ -28,6 +28,9 @@
 		<div data-role="header" data-position="fixed" data-theme="b">
 			<h1>RemindMe</h1>
 		</div>
+		<div data-role="content">
+			<input type="search" name="reminderSearch" id="reminderSearch" />
+		</div>
 		
 		<div data-role="content" style="text-align: center;" data-theme="b">
 			<a href="#reminder"><img src="img/reminder.png" height=120 width=120/></a><br />
@@ -68,51 +71,59 @@
         
         <!-- Form data-->
         
-        <form action = "#" method="post" id="reminderForm">
-        	<fieldset>
-	        	<legend>Set Reminder</legend>
+        <form action = "" method="post" id="reminderForm">
+        	
+	        	
 	        	<span>* fields are required.</span>
 	        	<ul id="errors"></ul>
-	        	<ul>
-	        		<!-- Select / Option -->
-	        		<li id="select">
+	        	
+	        	
+	        		<div data-role="fieldcontain">
 	        			<label for="category">Reminder Category:</label>
-	        		</li>
+		        		<!-- Select / Option -->
+		        		<select name="category" id="category">
+		        			<option data-placeholder="true">Please Select A Category</option>
+		        			<option value="Personal">Personal</option>
+		        			<option value="Work">Work</option>
+		        			<option value="Other">Other</option>
+		        		</select>
+	        		</div>
+	        		<div data-role="fieldcontain">
+		        		<!-- Label and text field -->
+		        		<label for="remindTitle">*Name:</label><input type="text" name"remindTitle" id="remindTitle" />
+	        		</div>
 	        		
+	        		<div data-role="fieldcontain">
+		        		<!-- Date -->
+		        		<label for="due">*Due Date:</label><input type="date" id="due" />
+	        		</div>
 	        		
-	        		<!-- Label and text field -->
-	        		<li><label for="remindTitle">*Name:</label><input type="text" id="remindTitle" /></li>
-	        		
-	        		
-	        		<!-- Date -->
-	        		<li><label for="due">*Due Date:</label><input type="date" id="due" /></li>
-	        		
-	        		
-	        		<!-- Radio Buttons -->
-	        		<li>What is the Priority of this event?
-		        		<ul>
-			        		<li><label for="hipri">High Priority</label><input type="radio" name="priority" value="high" id="hipri" /></li>
-			        		<li><label for="stdpri">Normal Priority</label><input type="radio" checked name="priority" value="normal" id="stdpri" /></li>
-			        		<li><label for="lopri">Low Priority</label><input type="radio" name="priority" value="low" id="lopri" /></li>
-		        		</ul>
-		        	</li>
-	        		
-	        		
-	        		<!-- Range Selection -->
-	        		<li>
-		        		<label for="recurrence">*A few or several recurrences in the next month?</label>
-		        		
-		        		<input type="range" id="recurrence" min="0" max="10" value="0" name="recurrence" />
-	        		</li>
-	        		<!-- Text Area -->
-	        		<li>
+	        		<div data-role="fieldcontain">
+	        			<fieldset data-role="controlgroup">
+			        		<!-- Radio Buttons -->
+			        		<legend>What is the Priority of this event?</legend>
+				        	
+					        		<label for="hipri">High Priority</label>
+					        		<input type="radio" name="priority" value="high" id="hipri" />
+					        		<label for="stdpri">Normal Priority</label>
+					        		<input type="radio" checked name="priority" value="normal" id="stdpri">
+					        		<label for="lopri">Low Priority</label>
+					        		<input type="radio" name="priority" value="low" id="lopri" />
+				        		
+				        	
+				        </fieldset>
+	        		</div>
+	        		<fieldset data-role="fieldcontain">
+	   	        		<!-- Text Area -->
 	        			<label for="description">Description:</label>
 	        			<textarea id="description" form="reminderForm"></textarea>
-	        		</li>
-	        	</ul>
-        	</fieldset>
-        	<!-- Submit Button -->
-        	<span id="buttonHolder" class="ui-btn-text"><input type="button" value="Submit" id="submitButton"/></span>
+	        		</fieldset>
+	        	
+        	<div data-role="fieldcontain">
+	        	<!-- Submit Button -->
+	        	<input type="submit" value="Submit" id="submitButton"/>
+	        	<input data-theme="a" type="reset" value="Reset" id="reset"/>
+        	</div>
         </form>
         <br />
         <!-- Clear and Display Data Links -->
