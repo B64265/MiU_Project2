@@ -21,7 +21,7 @@ $('#reminder').on('pageinit', function(){
 				$("#reminderErrors ul").html(html);
 			},
 			submitHandler: function() {
-		var data = myForm.serializeArray();
+			var data = myForm.serializeArray();
 			storeData(data);
 		}
 	});
@@ -67,13 +67,14 @@ var storeData = function(data){
 		item.remindTitle 		= ["Reminder Title:", $('remindTitle').value];
 		item.dueDate			= ["Due Date:", $('due').value];
 		item.priority			= ["Priority:", priorityValue];
-		item.recurrence			= ["Recurrence:",$('recurrence').value];
 		item.description		= ["Description:", $('description').value];
 		
 		
 		//Save to Local Storage
 		localStorage.setItem(id, JSON.stringify(item));
 		alert("Reminder is set!");
+		
+		console.log(id, JSON.stringify(item));
 
 	
 }; 
@@ -84,6 +85,18 @@ var	deleteItem = function (){
 					
 var clearLocal = function(){
 
+};
+
+var getCurrentDate = function(){
+	var tD = new Date();
+	var monthNames = [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ];
+	var datestr = monthNames[tD.getMonth()] + " " + tD.getDate()  + ", " + tD.getFullYear();
+	
+	var due = document.getElementById("due");
+		due.setAttribute("value", datestr);
+	
+	//console.log("Success!");
+	
 };
 
 

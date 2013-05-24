@@ -33,8 +33,11 @@
 		</div>
 		
 		<div data-role="content" style="text-align: center;" data-theme="b">
-			<a href="#reminder"><img src="img/reminder.png" height=120 width=120/></a><br />
-			<p><a href="#reminder" style="margin: 5%" data-inset="true" data-role="button" data-icon="arrow-r" data-iconpos="right">Add A Reminder</a></p>
+			<a href="#reminder">Remember what to do, and when it's due!<br /><img src="img/reminder.png" height=120 width=120/></a>
+			
+			<p><a href="#reminder" style="margin: 5%" data-inset="true" data-role="button" data-icon="arrow-r" data-iconpos="right">Add A Reminder</a><br />
+			
+			</p>
 		
 		<div id="browseButtons">
 			<h3>Browse Reminders</h3>
@@ -49,7 +52,8 @@
 		<div data-role="footer" data-position="fixed" data-theme="b" id="footer">
 				<div data-role="navbar">
 					<ul>
-						<li><a href="#reminder">+Reminder</a></li>
+						<li><a href="#home">Home</a></li>
+						<li><a href="#reminder">+New</a></li>
 						<li><a href="#search" id="searchLink" data-ajax="false">Search</a></li>
 						<li><a href="#moreInfo">Info</a>
 						</li>
@@ -81,7 +85,7 @@
 	        		<div data-role="fieldcontain">
 	        			<label for="category">Reminder Category:</label>
 		        		<!-- Select / Option -->
-		        		<select name="category" id="category">
+		        		<select name="category" class="required" id="category">
 		        			<option data-placeholder="true">Please Select A Category</option>
 		        			<option value="Personal">Personal</option>
 		        			<option value="Work">Work</option>
@@ -91,12 +95,14 @@
 	        		
 	        		<div data-role="fieldcontain">
 		        		<!-- Date -->
-		        		<label for="title">*Name</label><input type="text" class="required" name="title" id="title" data-placeholder="true" value="Test"/>
+		        		<label for="title">*Name</label><input type="text" class="required" name="title" id="title" />
+		        		<label style="font-size: 80%;">ex. Sales Consultant Report</label>
 	        		</div>
 	        		
 	        		<div data-role="fieldcontain">
 		        		<!-- Date -->
 		        		<label for="due">*Due Date</label><input type="date" class="required" name="due" id="due" />
+		        		<label style="font-size: 80%;">ex. May 23, 2013</label>
 	        		</div>
 	        		
 	        		<div data-role="fieldcontain">
@@ -123,6 +129,7 @@
         	<div data-role="fieldcontain">
 	        	<!-- Submit Button -->
 	        	<input type="submit" value="Submit" id="submitButton"/>
+	        	<br/>
 	        	<input data-theme="a" type="reset" value="Reset" id="reset"/>
         	</div>
         	
@@ -131,16 +138,19 @@
         </form>
         <br />
         <!-- Clear and Display Data Links -->
-        <a href="#" id="clearData">Clear Storage</a>
+        <!--
+	        <a href="#" id="clearData">Clear Storage</a>
         <a href="#search" id="showData">Display Data</a>
         <a href="#reminder" id="addNewForm" style="display:none;">Add New Reminder</a>
+        -->
         
         </div>
 		
 		<div data-role="footer" data-position="fixed" data-theme="b" id="footer">
 				<div data-role="navbar">
 					<ul>
-						<li><a href="#reminder" class="ui-btn-active">+Reminder</a></li>
+						<li><a href="#home">Home</a></li>
+						<li><a href="#reminder" class="ui-btn-active">+New</a></li>
 						<li><a href="#search" id="searchLink" data-ajax="true">Search</a></li>
 						<li><a href="#moreInfo">Info</a>
 						</li>
@@ -164,7 +174,8 @@
 			<div data-role="footer" data-position="fixed" data-theme="b" id="footer">
 				<div data-role="navbar">
 					<ul>
-						<li><a href="#reminder">+Reminder</a></li>
+						<li><a href="#home">Home</a></li>
+						<li><a href="#reminder">+New</a></li>
 						<li><a href="#search" class="ui-btn-active" id="searchLink" data-ajax="true">Search</a></li>
 						<li><a href="#moreInfo">Info</a>
 						</li>
@@ -186,7 +197,8 @@
 			<div data-role="footer" data-position="fixed" data-theme="b" id="footer">
 				<div data-role="navbar">
 					<ul>
-						<li><a href="#reminder">+Reminder</a></li>
+						<li><a href="#home">Home</a></li>
+						<li><a href="#reminder">+New</a></li>
 						<li><a href="#search" data-ajax="true">Search</a></li>
 						<li><a href="#moreInfo">Info</a>
 						</li>
@@ -202,14 +214,15 @@
 			<div data-role="content">
 				<ul data-role="controlgroup" style="margin: 5%" data-inset="true">
 					<a href="../Gold/index.html" rel="external" data-role="button" id="Gold" data-icon="arrow-r" data-iconpos="right">Gold App</a>
-					<a href="../Bronze/index.html" rel="external" data-role="button" id="Bronze" data-icon="arrow-r" data-iconpos="right">Bronze App</a>
+					<a href="../Bronze/index.html" rel="external" data-role="button" id="Bronze" data-icon="arrow-r" data-iconpos="right" data-ajax="false">Bronze App</a>
 					<a href="http://github.com/B64265/MiU_Project2" data-role="button" id="GitHub" data-icon="arrow-r" data-iconpos="right">GitHub</a>
 				</ul>
 			</div>
 			<div data-role="footer" data-position="fixed" data-theme="b" id="footer">
 				<div data-role="navbar">
 					<ul>
-						<li><a href="#reminder">+Reminder</a></li>
+						<li><a href="#home">Home</a></li>
+						<li><a href="#reminder">+New</a></li>
 						<li><a href="#search" data-ajax="true">Search</a></li>
 						<li><a href="#moreInfo">Info</a>
 						</li>
@@ -240,9 +253,19 @@
 	<script src="js/libs/jquery.validate.min.js"></script>
 	<script type="text/javascript" src="js/main.js"></script>
 	<script src="js/json.js" type="text/javascript"></script>
-	<!--
-<script type="text/javascript">
+	
+		<script type="text/javascript">
 		
+		var tD = new Date();
+		var monthNames = [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ];
+		var datestr = monthNames[tD.getMonth()] + " " + tD.getDate()  + ", " + tD.getFullYear();
+	
+		var due = document.getElementById("due");
+		due.setAttribute("value", datestr);
+		
+
+		/*
+
 		function $(x) {
 		var theElement = document.getElementById(x);
 		return theElement;
@@ -257,7 +280,8 @@
 			
 			}
 		}
--->
+	
+*/
 
 		
 	</script>
